@@ -1,13 +1,11 @@
 #https://hub.docker.com/u/securecompliance
 #https://github.com/Secure-Compliance-Solutions-LLC/GVM-Docker
 #https://github.com/greenbone/openvas-scanner
-apt install docker.io
 sudo apt install docker.io
 sudo docker run --detach --publish 8080:9392 --publish 5432:5432 --publish 2222:22 --env DB_PASSWORD="postgres DB password" --env PASSWORD="webUI password" --volume /postgres-db:/opt/database --volume /openvas-plugins:/var/lib/openvas/plugins --volume/gvm:/var/lib/gvm --volume /ssh:/etc/ssh --name gvm securecompliance/gvm
 sudo docker ps
 sudo docker logs -f --tail=20 7ee06e7071891be1b6a213d3a5f00b9605bb5ab92e40931c653601be295bee8e
 sudo docker exec -ti 7ee06e7071891be1b6a213d3a5f00b9605bb5ab92e40931c653601be295bee8e bash
-sudo docker exec -ti 7ee06e7071891be1b6a213d3a5f00b9605bb5ab92e40931c653601be295bee8e sync-all.sh
 docker exec -ti 7ee06e7071891be1b6a213d3a5f00b9605bb5ab92e40931c653601be295bee8e bash -c ./sync-all.sh
 #sudo gvm-feed-update
 #sudo greenbone-nvt-sync
