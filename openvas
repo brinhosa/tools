@@ -2,7 +2,8 @@
 #https://github.com/Secure-Compliance-Solutions-LLC/GVM-Docker
 #https://github.com/greenbone/openvas-scanner
 sudo apt install docker.io
-sudo docker run --detach --publish 8080:9392 --publish 5432:5432 --publish 2222:22 --env DB_PASSWORD="postgres DB password" --env PASSWORD="webUI password" --volume /postgres-db:/opt/database --volume /openvas-plugins:/var/lib/openvas/plugins --volume/gvm:/var/lib/gvm --volume /ssh:/etc/ssh --name gvm securecompliance/gvm
+sudo dockerd
+sudo docker run --detach --publish 8080:9392 --publish 5432:5432 --publish 2222:22 --env DB_PASSWORD="postgres DB password" --env PASSWORD="webUI password" --volume /postgres-db:/opt/database --volume /openvas-plugins:/var/lib/openvas/plugins --volume /gvm:/var/lib/gvm --volume /ssh:/etc/ssh --name gvm securecompliance/gvm
 sudo docker ps
 sudo docker logs -f --tail=20 CONTAINER_ID
 sudo docker exec -ti CONTAINER_ID bash
