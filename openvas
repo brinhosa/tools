@@ -13,4 +13,4 @@ docker exec -ti gvm bash -c ./sync-all.sh
 #sudo greenbone-scapdata-sync
 #sudo greenbone-certdata-sync
 sudo docker ps
-Open the browser at: http://127.0.0.1:9392/
+Open the browser at: https://localhost:8080/login
