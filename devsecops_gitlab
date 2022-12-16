@@ -1,0 +1,193 @@
+OWASP ZAP
+
+scan:
+  image: owasp/zap2docker-stable:latest
+  script:
+    # Start the ZAP daemon
+    - zap.sh -daemon -port 8090 -host 0.0.0.0
+    # Wait for the ZAP daemon to start
+    - sleep 10
+    # Set the target URL for the scan
+    - zap-cli --zap-url http://0.0.0.0:8090 set target <TARGET_URL>
+    # Set the login information for the scan
+    - zap-cli --zap-url http://0.0.0.0:8090 set context action auth_method=form auth_form_id=login_form auth_form_submit_id=login_submit auth_username_input_id=username auth_password_input_id=password auth_username=<USERNAME> auth_password=<PASSWORD>
+    # Start the scan
+    - zap-cli --zap-url http://0.0.0.0:8090 spider
+    - zap-cli --zap-url http://0.0.0.0:8090 active-scan
+    # Save the scan results
+    - zap-cli --zap-url http://0.0.0.0:8090 report -o /results/report.html -f html
+  artifacts:
+    paths:
+      - results/
+
+scan:
+  stage: test
+  image: owasp/zap2docker-stable:latest
+  script:
+    # Start the ZAP daemon
+    - zap.sh -daemon -config api.key=zap-api-key -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true
+    # Wait for the ZAP daemon to start
+    - zap-cli --zap-url http://0.0.0.0 -p 9090 status -t 120
+    # Set the target URL for the scan
+    - zap-cli --zap-url http://0.0.0.0 -p 9090 open-url "http://test-system.example.com"
+    # Set the login information for the scan
+    - zap-cli --zap-url http://0.0.0.0 -p 9090 auth -m form -a loginUrl="http://test-system.example.com/login" -a usernameField="username" -a passwordField="password" -a username="test-user" -a password="test-password"
+    # Start the active scan
+    - zap-cli --zap-url http://0.0.0.0 -p 9090 active-scan -r "http://test-system.example.com"
+    # Wait for the scan to complete
+    - zap-cli --zap-url http://0.0.0.0 -p 9090 -t 120 wait-for-passive-scan
+    # Generate the scan report
+    - zap-cli --zap-url http://0.0.0.0 -p 9090 report -o /tmp/zap-report.html -f html
+  artifacts:
+    paths:
+      - /tmp/zap-report.html
+
+
+scan:
+  image: owasp/zap2docker-stable:latest
+  script:
+    # Start OWASP ZAP in daemon mode
+    - zap.sh -daemon -port 8090
+    # Wait for OWASP ZAP to start
+    - sleep 10
+    # Set the base URL for the project
+    - zap-cli --zap-url http://0.0.0.0 -p 8090 set option target.start_url "$PROJECT_URL"
+    # Set the login credentials for the test system
+    - zap-cli --zap-url http://0.0.0.0 -p 8090 set context user "$USERNAME"
+    - zap-cli --zap-url http://0.0.0.0 -p 8090 set context pass "$PASSWORD"
+    # Start the scan
+    - zap-cli --zap-url http://0.0.0.0 -p 8090 start scan
+    # Wait for the scan to finish
+    - sleep 60
+    # Save the scan results
+    - zap-cli --zap-url http://0.0.0.0 -p 8090 report -o /app/scan-results.html -f html
+  artifacts:
+    paths:
+      - scan-results.html
+  variables:
+    PROJECT_URL: https://example.com
+    USERNAME: user
+    PASSWORD: pass
+
+HORUSEC
+
+GitLab CI/CD job to scan a project with Horusec, you can use the following steps:
+
+Install the Horusec CLI on the runner where the job will be run. You can do this by running pip install horusec.
+
+Create a .gitlab-ci.yml file in the root directory of your project.
+
+Add the following job to the .gitlab-ci.yml file:
+
+Copy code
+scan_with_horusec:
+  image: python:3.8
+  script:
+    - horusec scan .
+  only:
+    - master
+This job will run the horusec scan command on the project's source code. The only directive specifies that the job will only run when code is pushed to the master branch.
+
+Commit and push the .gitlab-ci.yml file to your GitLab repository.
+
+The job will automatically run every time code is pushed to the master branch, and the results of the scan will be displayed in the GitLab CI/CD pipeline.
+
+Note: If you want to customize the Horusec scan options, you can do so by adding additional arguments to the horusec scan command in the script section of the job. For example, to scan only Python files and ignore files in the venv directory, you can use the following command:
+
+Copy code
+horusec scan --extensions py --exclude venv .
+You can find more information about the available Horusec scan options in the Horusec documentation at https://horusec.io/docs/.
+
+
+-----
+
+GitLab CI/CD job to scan a project with Horusec using a Docker image, you can use the following steps:
+
+Pull the Horusec Docker image from the Docker Hub. You can do this by running docker pull horusec/horusec.
+
+Create a .gitlab-ci.yml file in the root directory of your project.
+
+Add the following job to the .gitlab-ci.yml file:
+
+Copy code
+scan_with_horusec:
+  image: horusec/horusec
+  script:
+    - horusec scan .
+  only:
+    - master
+This job will run the horusec scan command on the project's source code using the Horusec Docker image. The only directive specifies that the job will only run when code is pushed to the master branch.
+
+Commit and push the .gitlab-ci.yml file to your GitLab repository.
+
+The job will automatically run every time code is pushed to the master branch, and the results of the scan will be displayed in the GitLab CI/CD pipeline.
+
+Note: If you want to customize the Horusec scan options, you can do so by adding additional arguments to the horusec scan command in the script section of the job. For example, to scan only Python files and ignore files in the venv directory, you can use the following command:
+
+Copy code
+horusec scan --extensions py --exclude venv .
+You can find more information about the available Horusec scan options in the Horusec documentation at https://horusec.io/docs/.
+
+-----
+
+GitLab CI/CD job to scan a project with Horusec using the Horusec Docker image, you can use the following steps:
+
+Create a .gitlab-ci.yml file in the root directory of your project.
+
+Add the following job to the .gitlab-ci.yml file:
+
+Copy code
+scan_with_horusec:
+  image: horusec/horusec:latest
+  script:
+    - horusec scan .
+  only:
+    - master
+This job will use the Horusec Docker image to run the horusec scan command on the project's source code. The only directive specifies that the job will only run when code is pushed to the master branch.
+
+Commit and push the .gitlab-ci.yml file to your GitLab repository.
+
+The job will automatically run every time code is pushed to the master branch, and the results of the scan will be displayed in the GitLab CI/CD pipeline.
+
+Note: If you want to customize the Horusec scan options, you can do so by adding additional arguments to the horusec scan command in the script section of the job. For example, to scan only Python files and ignore files in the venv directory, you can use the following command:
+
+Copy code
+horusec scan --extensions py --exclude venv .
+You can find more information about the available Horusec scan options in the Horusec documentation at https://horusec.io/docs/.
+
+
+--------------
+
+GitLab CI/CD job to scan a project with SonarQube and Semgrep using Docker images from Docker Hub, you can use the following steps:
+
+Create a .gitlab-ci.yml file in the root directory of your project.
+
+Add the following job to the .gitlab-ci.yml file:
+
+Copy code
+scan_with_sonarqube_semgrep:
+  image: sonarsource/sonar-scanner-cli:latest
+  script:
+    - sonar-scanner -Dsonar.login=$SONAR_TOKEN
+  only:
+    - master
+  variables:
+    SONAR_TOKEN: $SONAR_TOKEN
+  before_script:
+    - wget https://github.com/returntocorp/semgrep/releases/download/v0.26.2/semgrep_0.26.2_amd64.deb
+    - sudo dpkg -i semgrep_0.26.2_amd64.deb
+    - semgrep --version
+This job will use the SonarQube Scanner CLI Docker image to run a SonarQube scan on the project's source code, and will use Semgrep to detect code issues. The only directive specifies that the job will only run when code is pushed to the master branch. The SONAR_TOKEN variable should be set in the GitLab project's CI/CD settings to a token that authenticates the job with your SonarQube instance.
+
+The before_script section installs Semgrep and checks the version to ensure that it is correctly installed.
+
+Commit and push the .gitlab-ci.yml file to your GitLab repository.
+
+The job will automatically run every time code is pushed to the master branch, and the results of the scan will be displayed in the GitLab CI/CD pipeline and in your SonarQube instance.
+
+Note: If you want to customize the Semgrep scan options, you can do so by adding additional arguments to the semgrep command in the script section of the job. For example, to scan only Python files and use a specific Semgrep rule set, you can use the following command:
+
+Copy code
+semgrep --extensions py --config /path/to/ruleset.yml .
+You can find more information about the available Semgrep options and rule sets in the Semgrep documentation at https://semgrep.dev/docs/.
+
