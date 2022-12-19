@@ -21,7 +21,7 @@ docker run --rm -it m4ll0k/subbrute $domain >> $output
 
 # Use amass to find subdomains
 echo "Running amass for $domain"
-docker run --rm -it amass enum -d $domain >> $output
+docker run --rm -it caffix/amass enum -d $domain >> $output
 
 # Use findomain to find subdomains
 echo "Running findomain for $domain"
