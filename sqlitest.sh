@@ -11,11 +11,11 @@ normalized_url=$(echo "$1" | sed -e 's/[^a-zA-Z0-9_\.-]/-/g')
 
 # Run sqlmap to scan the URL for SQL injection vulnerabilities
 echo "Running sqlmap scan on $1..."
-docker run --rm -v $(pwd)/sqlmap_output_$normalized_url.txt:/root/sqlmap_output.txt owasp/sqlmap -u "$1" > /dev/null
+docker run --rm -v $(pwd)/sqlmap_output_$normalized_url.txt:/root/sqlmap_output.txt paoloo/sqlmap -u "$1" > /dev/null
 
 # Run sqlninja to scan the URL for SQL injection vulnerabilities
 echo "Running sqlninja scan on $1..."
-docker run --rm -v $(pwd)/sqlninja_output_$normalized_url.txt:/root/sqlninja_output.txt s4n7h0/sqlninja -u "$1" > /dev/null
+docker run --rm -v $(pwd)/sqlninja_output_$normalized_url.txt:/root/sqlninja_output.txt ddrscott/sql-ninja -u "$1" > /dev/null
 
 # Run sqlmate to scan the URL for SQL injection vulnerabilities
 echo "Running sqlmate scan on $1..."
