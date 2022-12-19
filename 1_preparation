@@ -1,6 +1,6 @@
 sudo apt install docker.io
 sudo dockerd
-sudo docker run --detach --publish 8080:9392 --publish 5432:5432 --publish 2222:22 --env DB_PASSWORD="1postgres DB password 1A!" --env PASSWORD="A2022@DificilOpenVAS#782789732" --volume /postgres-db:/opt/database --volume /openvas-plugins:/var/lib/openvas/plugins --volume /gvm:/var/lib/gvm --volume /ssh:/etc/ssh --name gvm securecompliance/gvm
+sudo docker run --detach --publish 8080:9392 --publish 5432:5432 --publish 2222:22 --env DB_PASSWORD="$M%58gQlc23HxaGo" --env PASSWORD="jWJPCNax1$3B6ZH&" --volume /postgres-db:/opt/database --volume /openvas-plugins:/var/lib/openvas/plugins --volume /gvm:/var/lib/gvm --volume /ssh:/etc/ssh --name gvm securecompliance/gvm
 
 sudo docker ps
 sudo docker logs -f --tail=20 gvm
@@ -25,6 +25,8 @@ docker run -it gamehunterkaan/autopwn-suite
 
 autopwn-suite -y -hf scope.txt
 docker run --rm -v $(pwd):/tmp/results -it gamehunterkaan/autopwn-suite -y -t 127.0.0.1 -o /tmp/results/auto_pwn_results.html -ot html
- 
+
+apt install nmap
+nmap --script-updatedb
 nmap -Pn -p- -iL scope.txt --script=vuln -oA nmap_results
 
