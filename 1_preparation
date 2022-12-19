@@ -1,6 +1,11 @@
 sudo apt install docker.io
 sudo dockerd
 sudo docker run --detach --publish 8080:9392 --publish 5432:5432 --publish 2222:22 --env DB_PASSWORD="$M%58gQlc23HxaGo" --env PASSWORD="jWJPCNax1$3B6ZH&" --volume /postgres-db:/opt/database --volume /openvas-plugins:/var/lib/openvas/plugins --volume /gvm:/var/lib/gvm --volume /ssh:/etc/ssh --name gvm securecompliance/gvm
+apt install nmap -y
+nmap --script-updatedb
+sudo pip install autopwn-suite
+docker pull gamehunterkaan/autopwn-suite
+docker pull projectdiscovery/nuclei
 
 sudo docker ps
 sudo docker logs -f --tail=20 gvm
