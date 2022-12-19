@@ -1,0 +1,30 @@
+sudo apt install docker.io
+sudo dockerd
+sudo docker run --detach --publish 8080:9392 --publish 5432:5432 --publish 2222:22 --env DB_PASSWORD="1postgres DB password 1A!" --env PASSWORD="A2022@DificilOpenVAS#782789732" --volume /postgres-db:/opt/database --volume /openvas-plugins:/var/lib/openvas/plugins --volume /gvm:/var/lib/gvm --volume /ssh:/etc/ssh --name gvm securecompliance/gvm
+
+sudo docker ps
+sudo docker logs -f --tail=20 gvm
+sudo docker exec -ti gvm bash
+docker exec -ti gvm bash -c ./sync-all.sh
+#sudo gvm-feed-update
+#sudo greenbone-nvt-sync
+#sudo greenbone-scapdata-sync
+#sudo greenbone-certdata-sync
+sudo docker ps
+
+docker run --rm --net=host -it --name offdocker aaaguirrep/offensive-docker /bin/zsh
+
+sudo pip install autopwn-suite
+
+git clone https://github.com/GamehunterKaan/AutoPWN-Suite.git
+cd AutoPWN-Suite
+sudo pip install -r requirements.txt
+
+docker pull gamehunterkaan/autopwn-suite
+docker run -it gamehunterkaan/autopwn-suite
+
+autopwn-suite -y -hf scope.txt
+docker run --rm -v $(pwd):/tmp/results -it gamehunterkaan/autopwn-suite -y -t 127.0.0.1 -o /tmp/results/auto_pwn_results.html -ot html
+ 
+nmap -Pn -p- -iL scope.txt --script=vuln -oA nmap_results
+
