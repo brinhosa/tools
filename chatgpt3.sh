@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Based on https://github.com/CristiVlad25/gpt3cli
+
 # Set your OpenAI API key
 export OPENAI_API_KEY="CHANGE_HERE"
 
