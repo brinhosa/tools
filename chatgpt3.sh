@@ -33,7 +33,7 @@ OUTPUT=$(curl -sk -X POST -H "Authorization: Bearer $OPENAI_API_KEY" -H "Content
 # Extract the text from the response
 OUTPUT=$(echo "$OUTPUT" | jq -r '.choices[0].text')
 # Print the output
-echo #$PROMPT > codigo_$(date +%Y%m%d%H%M%S).sh 
+#echo #$PROMPT > codigo_$(date +%Y%m%d%H%M%S).sh 
 echo "$OUTPUT" | tee -a codigo_$(date +%Y%m%d%H%M%S).sh
 chmod +x codigo_$(date +%Y%m%d%H%M%S).sh
 echo nano codigo_$(date +%Y%m%d%H%M%S).sh
