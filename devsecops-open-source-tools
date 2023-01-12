@@ -299,3 +299,72 @@ docker run -v `pwd`:/wpscan/report --rm wpscanteam/wpscan --url <website URL> --
 docker run --rm -it wfuzz/wfuzz:latest -o json --import report.json
 docker run -it whispers:0.1 --notewith 0-100 --report <report_name>
 docker run -p 8080:8080 owasp/zap2docker-stable zap-baseline.py -t http://example.com -r report.html
+
+Improved commands: 
+docker run --name AnchoreEngine -u root -v $(PWD):/src anchore/engine:latest analyze url/domain/subdomain/directory --output-format json | jq . > /src/filename.json
+docker run -u root -v $(PWD):/src arachni/arachni scanner https://www.example.com --report-save-path=/src/filename.afr
+docker run -u root -v $(PWD):/src -it auditjs scan --url <url-or-domain-or-subdomain-or-directory> --format report > /src/filename
+docker run --rm -u root -v $(PWD):/src dockerhubuser/bandit:1.0 scan -r <url> -o /src/filename
+docker run --rm -u root -v $(PWD):/src brakeman/brakeman:latest <URL/domain/subdomain/directory> -o /src/filename.html
+docker run -u root -v $(PWD):/src aquasec/bundler-audit scan https://mydomain.com -o /src/filename
+docker run --rm -u root -v $(PWD):/src clairscanner/clair-scanner scan --ip http://example.com > /src/filename
+docker run -u root -v $(PWD):/src codeql/codeql-cli scan --format html --output /src/filename <input_url>
+docker run --rm -u root -v $(PWD):/src dawnscanner/dawnscanner scan <url-domain-subdomain-directory> --html /src/filename
+docker run -u root -v $(PWD):/src owasp/dependency-check --scan <url or domain or subdomain or directory of the source-code> --out /src/filename
+docker run --rm -u root -v $(PWD):/src <image-name> drheader -u <input url or domain or subdomain or directory of the source-code> -o /src/filename.html
+docker run -u root -v $(PWD):/src --name GCP_Dockle mcurvers/dockle https://example.com:8080/ > /src/filename.json
+docker run -e LOCATION=<source_URL> -u root -v $(PWD):/src detectsecrets/detect-secrets scan -o /src/filename
+docker run -u root -v $(PWD):/src eslint/eslint <url-or-domain-or-subdomain-or-directory> -f /src/filename.json
+docker run --rm -u root -v $(PWD):/src ggshield/ggshield scan <url/domain/subdomain/directory> -o /src/filename
+docker run -v $(PWD):/src --rm gosec/gosec -u root scan -f html /src/filename https://myurl.com
+docker run --rm -u root -v $(PWD):/src gitleaks/gitleaks scan --report=/src/filename URL
+docker run -u root -v $(PWD):/src hadolint hadolint <url/domain/subdomain/directory> --output /src/filename
+docker run -u root -v $(PWD):/src horusec/horusec [url/domain/subdomail/directory] > /src/filename.json
+docker run --rm -u root -v $(PWD):/src huskyci/huskyci-report scan <url/domain/subdomain/directory> /src/filename
+docker run --rm -u root -v $(PWD):/src -it ibm-appscan-dast scan --url=<url/domain/subdomain/directory> --report /src/filename
+docker run -v $(PWD):/src -u root jfrog/xray-api scanner --scan-url <domain or subdomain or directory here> --verbose --output /src/filename.json
+docker run  -u root -v $(PWD):/src kics/scanner:latest scan https://www.example.com --report /src/filename.html
+docker run -v $(PWD):/src --rm jhaddix/bugcrowd ManualImport /src/filename -u root url
+docker run -v $(PWD):/src -u root mshaikh8/mobSF:latest scan -url <DOMAIN_OR_URL> --scan /src/filename
+docker run -it --rm -v $(PWD):/src opensecurity/mobsf:latest /mobsf scan_url -u root -o /src/filename.json
+docker run --rm -v $(PWD):/src observatory/scanner scan -u root --report /src/filename  <url or domain or subdomain or directory>
+docker run -u root -v $(PWD):/src --rm nessus scan url/domain/subdomain/directory -o /src/filename.html
+docker run -u root -v $(PWD):/src --rm nessus/nessus:latest scan /src/filename <url-or-domain-or-subdomain-or-directory>
+ `docker run -u root -v $(PWD):/src/ niksi2scan -o report_file.txt https://example.com`.
+docker run -u root --name nmap_scan -v "$(PWD):/src" nmap <url or domain or subdomain or directory> -oA "/src/filename"
+docker run --rm -u root -v $(PWD):/src nodesecurity/nsp:latest scan --reporter html --output /src/filename [URL or DOMAIN or SUBDOMAIN or DIRECTORY]
+docker run --user root -v $(PWD):/src kitematic/npm-audit url_or_domain:port/subdirectory | tee /src/filename.txt
+docker run --rm -u root -v $(PWD):/src nuclei/nuclei -t https://example.com/ -o /src/filename.txt
+docker run --rm -u root -v $(PWD):/src openscap/openscap vuln-scan -u <input_url> --report /src/filename.html
+docker run --rm -u root -v $(PWD):/src openvas:latest openvas-scanner --report-format csv -o /src/filename <url/domain/subdomain/directory>
+docker run --rm -u root -v $(PWD):/src ossindex/devaudit devaudit scan -u <url or domain or subdomain or directory-of-sourcecode> > /src/filename
+docker run --rm -u root -v $(PWD):/src ort scan -output-format pdf http[s]://domain.com/source-code/ /src/filename.pdf
+docker run --rm -u root -v $(PWD):/src joepriesto/phpsa scan --report /src/filename <url or domain or subdomain or directory>
+docker run -u root -v $(PWD):/src --rm amnum/security-checker security:check http://example.com --format=json > /src/filename.json
+docker run -u root -v $(PWD):/src pwnsecurity/pwntools-automation asset="<url_or_domain_or_subdomain_or_directory>" bash /src/filename
+docker run -u root -v $(PWD):/src rubocop/Rubocop scan [URL/DOMAIN/SUBDOMAIN/DIR] -o /src/file_name.rb
+docker run -u root -v $(PWD):/src rustyhogparser.com/tool --url [URL OR DOMAIN OR SUBDOMAIN OR DIRECTORY] --report /src/filename
+docker run -u root -v $(PWD):/src  nccgroup/dridex:latest /src SARIF url | domain | subdomain | directory;
+docker run -v $(PWD):/src scantist/scan scan -u root --url <input-url> /src/filename
+docker run -u root -v $(PWD):/src markslebodnik/scoutsuite scout https://sourcecode.test -o /src/filename
+docker run --rm -v $(PWD):/src semgrep/semgrep:latest --json --eb /src/filename https://example.com
+docker run --rm -u root -v $(PWD):/src skfscan "url or domain or subdomain or directory of the source-code" -t $(PWD)! --output /src/filename.html
+docker run -u root -v $(PWD):/src docker/sonatype-ossindex-cli scan --url <url/domain/subdomain/directory> --out /src/filename
+docker run --rm -u root -v $(PWD):/src qualys/ssllabs-scan:latest url/domain/subdomain/directory > /src/filename
+docker run --rm -u root -v $(PWD):/src sslscan [SRC] > /src/filename
+docker run --rm -v $(PWD):/src sslyze --regular url/domain/subdomain/directory --report_file /src/filename.txt -u root
+docker run --network=host -v $(PWD):/src sslyze --regular "www.domainexampleexample.com" -u root --json_out "/src/filename"
+docker run -v $(PWD):/src testssl.sh/testssl.sh -u root <url_or_domain_or_subdomain_or_directory> -oA /src/filename
+docker run -u root -v $(PWD):/src terrascan https://www.example.com/sc/ -o /src/filename.txt
+docker run --rm -v $(PWD):/src trivy -u root url/domain/subdomain/directory | tee /src/filename.log
+docker run trufflehog -u root -v $(PWD):/src scan https://example.com/source-code --json | tee /src/filename.json
+docker run -u root -v $(PWD):/src trufflehog3/trufflehog scan --url <input> -o /src/filename;
+docker run --rm -u root -v $(PWD):/src \ dtrebbien/tfsec:latest tfsec --input http://example.com/src --output /src/filename
+docker run -u root -v $(PWD):/src -it vulnerners scan -m website -u [url, domain, subdomain or directory] > /src/filename
+docker run -e COMMAND="wapiti scan -u root -v $(PWD):/src/filename <url|domain|subdomain|directory>" --name waptic-scan <image name>
+docker run -v $(PWD):/src wpscanteam/wpscan -u root -u $1 --output /src/filename.txt
+docker run -u root -v $(PWD):/src wfuzz/json_importer -d <input_url_or_domain_or_subdomain_or_directory> --scan | tee /src/filename.json
+docker run --rm -u root -v $(PWD):/src whispers:latest -d "https://example.com" -o /src/filename
+docker run --rm -u root -v $(PWD):/src xanitizer/xanitizer-ubuntu scan --url <input> --report /src/filename
+docker run --rm -u root -v $(PWD):/src yarnaudit scan --url <input> && docker exec yarnaudit report -f /src/report.json
+docker run --rm -u root -v $(PWD):/src zaproxy zap-api-scan.py -t <url or domain or subdomain or directory of the source-code> -f html -r /src/filename
