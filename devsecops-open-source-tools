@@ -1,0 +1,301 @@
+Open-source or free tools compatible with owasp defect dojo: 
+Anchore-Engine; Arachni Scanner; AuditJS (OSSIndex); Bandit; Brakeman Scan; Bundler-Audit; CargoAudit Scan; Clair Scan; Clair Klar Scan; CodeQL; DawnScanner; Dependency Check; DrHeader; Dockle Report; docker-bench-security Scanner; Detect-secrets; ESLint; Ggshield; Gosec Scanner; Gitleaks; Hadolint; Horusec; HuskyCI Report; IBM AppScan DAST; JFrog Xray API Summary Artifact Scan; KICS Scanner; kube-bench Scanner; Manual Import; MobSF Scanner; Mobsfscan; Mozilla Observatory Scanner; Nessus; Nessus WAS; Nikto; Nmap; Node Security Platform; NPM Audit; Nuclei; Openscap Vulnerability Scan; OpenVAS CSV; OssIndex Devaudit; Oss Review Toolkit; PHP Security Audit v2; PHP Symfony Security Checker; PWN Security Automation Framework; Rubocop Scan; Rusty Hog parser; SARIF; Scantist Scan; ScoutSuite; Semgrep JSON Report; SKF Scan; Sonatype; SSL Labs; sslscan; Sslyze Scan; SSLyze 3 Scan (JSON); Testssl Scan; Terrascan; Trivy; Trufflehog; Trufflehog3; TFSec; Visual Code Grepper (VCG); Vulners; Wapiti Scan; Wpscan Scanner; Wfuzz JSON importer; Whispers; Xanitizer; Yarn Audit; Zed Attack Proxy.
+
+Tools with links:
+Anchore-Engine: https://github.com/anchore/anchore-engine
+Arachni Scanner: https://github.com/Arachni/arachni
+AuditJS (OSSIndex): https://ossindex.sonatype.org/
+Bandit: https://github.com/PyCQA/bandit
+Brakeman Scan: https://brakemanscanner.org/
+Bundler-Audit: https://github.com/rubysec/bundler-audit
+CargoAudit Scan: https://github.com/RustSec/cargo-audit
+Clair Scan: https://github.com/quay/clair
+Clair Klar Scan: https://github.com/optiopay/klar
+CodeQL: https://github.com/github/codeql
+DawnScanner: https://github.com/mozilla/dawnscanner
+Dependency Check: https://github.com/jeremylong/DependencyCheck
+DrHeader: https://github.com/davidtavarez/drheader
+Dockle Report: https://github.com/goodwithtech/dockle
+docker-bench-security Scanner: https://github.com/docker/docker-bench-security
+Detect-secrets: https://github.com/Yelp/detect-secrets
+ESLint: https://eslint.org/
+Ggshield: https://github.com/mozilla/ggshield
+Gosec Scanner: https://github.com/securego/gosec
+Gitleaks: https://github.com/zricethezav/gitleaks
+Hadolint: https://github.com/hadolint/hadolint
+Horusec: https://github.com/horusec
+HuskyCI Report: https://github.com/huskyci/huskyci
+JFrog Xray API Summary Artifact Scan: https://jfrog.com/xray/
+KICS Scanner: https://github.com/kudelskisecurity/kics
+kube-bench Scanner: https://github.com/aquasecurity/kube-bench
+Manual Import: n/a
+MobSF Scanner: https://github.com/MobSF/Mobile-Security-Framework-MobSF
+Mobsfscan: https://github.com/mobsf/mobsf
+Mozilla Observatory Scanner: https://observatory.mozilla.org/
+Nessus: https://www.tenable.com/products/nessus-vulnerability-scanner
+Nessus WAS: https://www.tenable.com/products/web-application-scanning
+Nikto: https://github.com/sullo/
+Nmap: https://nmap.org/
+Node Security Platform: https://nodesecurity.io/
+NPM Audit: https://docs.npmjs.com/cli/audit
+Nuclei: https://github.com/projectdiscovery/nuclei
+Openscap Vulnerability Scan: https://www.open-scap.org/
+OpenVAS CSV: https://www.openvas.org/
+OssIndex Devaudit: https://github.com/sonatype-nexus-community/devaudit
+Oss Review Toolkit: https://github.com/oss-review-toolkit/ort
+PHP Security Audit v2: https://github.com/FloeDesignTechnologies/php-security-audit
+PHP Symfony Security Checker: https://github.com/symfony/security-checker
+PWN Security Automation Framework: https://github.com/pwn-automation/pwn-cli
+Rubocop Scan: https://github.com/rubocop-hq/rubocop
+Rusty Hog parser: https://github.com/RustyHog/RustyHog
+SARIF: https://sarifweb.azurewebsites.net/
+Scantist Scan: https://scantist.com/
+ScoutSuite: https://github.com/nccgroup/ScoutSuite
+Semgrep JSON Report: https://github.com/returntocorp/semgrep
+SKF Scan: https://github.com/securing/Skf-labs
+SSL Labs: https://github.com/ssllabs/ssllabs-scan
+sslscan: https://github.com/rbsec/sslscan
+Sslyze Scan: https://github.com/nabla-c0d3/sslyze
+SSLyze 3 Scan (JSON): https://github.com/nabla-c0d3/sslyze
+Testssl Scan: https://github.com/drwetter/testssl.sh
+Terrascan: https://github.com/accurics/terrascan
+Trivy: https://github.com/aquasecurity/trivy
+Trufflehog: https://github.com/dxa4481/truffleHog
+Trufflehog3: https://github.com/dxa4481/truffleHog
+TFSec: https://github.com/tfsec/tfsec
+Visual Code Grepper (VCG): https://github.com/ryansturmer/vcg
+Vulners: https://vulners.com/
+Wapiti Scan: http://wapiti.sourceforge.net/
+Wpscan Scanner: https://github.com/wpscanteam/wpscan
+Wfuzz JSON importer: https://github.com/xmendez/wfuzz
+Whispers: https://github.com/mozilla/whispers
+Xanitizer: https://github.com/xanitizer/xanitizer
+Yarn Audit: https://yarnpkg.com/en/docs/cli/audit
+Zed Attack Proxy: https://github.com/zaproxy/zaproxy
+
+Commands:
+	•	Acunetix Scanner: acunetix-scan.sh -url http://example.com -report /path/to/report.xml
+	•	Anchore Engine: anchore-cli --json image add <image> && anchore-cli --json image wait <image> && anchore-cli --json evaluate check <image> > /path/to/report.json
+	•	Arachni Scanner: arachni --report-save-path=/path/to/report.afr http://example.com
+	•	Bandit: bandit -r <directory> -f json > /path/to/report.json
+	•	Brakeman Scan: brakeman -o /path/to/report.html -f html <directory>
+	•	Clair: clair-scanner --ip <clair-server-ip> --output=json /path/to/image.tar > /path/to/report.json
+	•	Dependency Check: dependency-check.sh --format JSON --out /path/to/ report.json <directory>
+	•	Gitleaks: gitleaks --json --report /path/to/report.json <repo-url>
+	•	Nessus: nessus-scan.sh -r /path/to/report.nessus -T html <nessus-options>
+	•	Nmap: nmap -oX /path/to/report.xml <nmap-options> <target>
+	•	NPM Audit: npm audit --json > /path/to/report.json
+	•	OpenVAS: openvas-scanner <options> -f <format> -o <file>
+	•	SSLyze: sslyze --regular <host>:<port> --json_out=/path/to/report.json
+	•	Trufflehog: trufflehog --json --entropy=False <directory> > /path/to/report.json
+	•	Yarn Audit: yarn audit --json > /path/to/report.json
+  
+ List:
+ Anchore-Engine
+Arachni Scanner
+AuditJS (OSSIndex)
+Bandit
+Brakeman Scan
+Bundler-Audit
+CargoAudit Scan
+Clair Scan
+Clair Klar Scan
+CodeQL
+DawnScanner
+Dependency Check
+DrHeader
+Dockle Report
+docker-bench-security Scanner
+Detect-secrets
+ESLint
+Ggshield
+Gosec Scanner
+Gitleaks
+Hadolint
+Horusec
+HuskyCI Report
+IBM AppScan DAST
+JFrog Xray API Summary Artifact Scan
+KICS Scanner
+kube-bench Scanner
+Manual Import
+MobSF Scanner
+Mobsfscan
+Mozilla Observatory Scanner
+Nessus
+Nessus WAS
+Nikto
+Nmap
+Node Security Platform
+NPM Audit
+Nuclei
+Openscap Vulnerability Scan
+OpenVAS CSV
+OssIndex Devaudit
+Oss Review Toolkit
+PHP Security Audit v2
+PHP Symfony Security Checker
+PWN Security Automation Framework
+Rubocop Scan
+Rusty Hog parser
+SARIF
+Scantist Scan
+ScoutSuite
+Semgrep JSON Report
+SKF Scan
+Sonatype
+SSL Labs
+sslscan
+Sslyze Scan
+SSLyze 3 Scan (JSON)
+Testssl Scan
+Terrascan
+Trivy
+Trufflehog
+Trufflehog3
+TFSec
+Visual Code Grepper (VCG)
+Vulners
+Wapiti Scan
+Wpscan Scanner
+Wfuzz JSON importer
+Whispers
+Xanitizer
+Yarn Audit
+Zed Attack Proxy
+
+Docker commands
+docker run --rm -it anchore/engine:latest report generate -i <docker_image_name>
+docker run --rm -it arachni/arachni --report-save-path=/my/report.afr
+docker run -it openwebscoutools/auditjs-ossindex:latest report -u <url>
+docker run --rm -it danmx/bandit --report=report.html
+docker run -it --rm brakeman/brakeman:latest -o output.html
+docker run --rm -it bundler-audit-docker/bundler-audit bundle-audit check --update --clock;
+docker run --rm -v $PWD:/src pantsell/cargaudit scan --output json > cargo-audit-report.json
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/coreos/clair-scan:latest -r <report> <image>
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/tmp quay.io/clair-container-scan:latest klar <image_name> > report.txt
+docker run -e REPORT_FILE=report.txt quay.io/security-tools/staticcheck:v0 report --json /results.json
+docker run -it ernw/dawnscanner --report <target_url>
+docker run --rm -v $(pwd):/src jeremy/dependency-check:latest -f HTML -o report.html /src
+docker run strcpy/drheader --report <target file or web server address>
+docker run --rm -it dockersamples/dockle:latest
+docker run -it --net host --pid host --cap-add audit_control \ -e DOCKER_CONTENT_TRUST=$DOCKER_CONTENT_TRUST \ -v /var/lib:/var/lib \ -v /var/run/docker.sock:/var/run/docker.sock \ -v /usr/lib/systemd:/usr/lib/systemd \ -v /etc:/etc --label docker_bench_security \ docker/docker-bench-security > report.txt
+docker run --rm detect-secrets/detect-secrets report > secrets_report.yml
+docker run -it --rm docker.io/node:latest eslint ./src --format=json > report.json
+docker run --rm -v $(pwd):/src ggshield:latest /src/report.json
+docker run -v `pwd`/results:/gosec/results securego/gosec -f json -o /gosec/results/gosec.json .
+docker run --rm -it diogomonica/gitleaks -v ./report.json
+docker run --rm -v $(pwd):/app hadolint/hadolint hadolint < /app/report.yml > report.log
+docker run -it --rm horusec/horusec generate report
+docker run --rm huskyci/report-generator
+docker run -v ./:/report ibmappscan/dast -f html -o /report/result.html
+docker run -e XRAY_API_KEY="YOUR_API_KEY" -e XRAY_SCANNER_ID="YOUR_SCANNER_ID" -it jfrog/xray-api-summary-scan:latest report
+docker run -it --rm dockersamples/kicsscanner:2.0 /bin/bash -c “./kicsscanner -r report.json”
+docker run -ti --rm --name=kube-bench-scanner aquasec/kube-bench:latest -f json /tmp/report.json
+docker run --rm devopsplatform/manual-import:0.1 report
+docker run -it opensecurity/mobile-security-framework_mobsf bash -c "python3 ./MSF.py -f $2 -o report-$1.html"
+docker run -ti opensecurity/mobile-security-framework-mobsf /bin/bash -c "/opt/MobSF/python2 ./MobSF.py --scan --file <filename> --report_type JSON > Report.json"
+docker run -it --rm mozilla/observatory scan -t yourdomain.xyz > your_report.txt
+docker run --rm -v "$(pwd):/nessus" tenable/nessus:latest nessus_report --statefile=/tmp/state.txt result.nessus
+docker run --user="" -it tenable/nessus-was -f report.html
+docker run --rm -it snallygaster/nikto -h <target_url> -o report.txt
+docker run --rm -it nmap nmap -oX report.xml mydomain.com
+docker run --rm -v "$PWD":/app nesec/security-analysis:latest scan --reporter report.json --policies ./policies.yaml
+docker run -v $(pwd):/report node:10-alpine npm audit --json > /report/npm_audit.json
+docker run --rm nuclei/nuclei -f list.txt -t templates/ -o report.html
+docker run --rm -it openscap/openscap oscap xccdf eval --profile default --results-arf arf.xml /usr/share/xml/scap/ssg/fedora/ssg-fedora-xccdf.xml
+docker run --rm openvas/openvas csv-generate -f /full_collection_report.xml -o output.csv
+docker run --rm -v $(pwd):/target/ manorrock/ossindex-devaudit scan /target/
+docker run -it --rm mpeace/ort-image:release ort-results generate --confidencelevels most_likely,low
+docker run --rm -it jazzyg/php_security_audit:v2 php audit.php /path/to/project > report.html
+docker run --rm giladno/security-checker security:check
+docker run -v $(pwd):/svn pwnsec/pwn-security-automation-framework -t report
+docker run --rm -it rishikasood/rustyhog -r report.html
+docker run --rm -it <docker-image-name> sarif generate -o report.sarif
+docker run --rm -v `pwd`:/reports scantist/scan generate --format html
+docker run --rm -it scrupulous/scoutsuite scoutsuite report -t aws
+docker run -v $(pwd):/src returntocorp/semgrep-report --format json report /src
+docker run -v `pwd`:/tools/skf-scan/results yoloab/skf-scan generate report
+docker run -it --rm sonatype/report-cli report --help
+docker run --rm mthlewis2/ssllabs-scan --host <target>
+docker run --rm -it ryansch/sslscan sslscan domain.com > report.txt
+docker run --rm -it stefanjudis/sslyze --regular css.com > report.txt
+docker run -v $(pwd):/data nshadov/sslyze --regular --json_out /data/report.json 3_scan
+docker run -t --rm testssl/testssl.sh --htmlfile=report.html scansite.example.com
+docker run --rm sscaiff/terrascan:latest terrascan scan -f <path to terrascript file> -o report.json
+docker run --rm --name TrivyScanner aquasec/trivy:latest --report report.html
+docker run -it --rm trufflehog/trufflehog <params> > report.txt
+docker run --rm trufflehog3 --generate-report
+docker run --rm liamg/tfsec --generate-report > tfsec-report.txt
+docker run -t --rm wapiti/scan report scan_result.xml > result.html
+docker run -v `pwd`:/wpscan/report --rm wpscanteam/wpscan --url <website URL> --format html --file /wpscan/report/wpscan_report.html
+docker run --rm -it wfuzz/wfuzz:latest -o json --import report.json
+docker run -it whispers:0.1 --notewith 0-100 --report <report_name>
+docker run -p 8080:8080 owasp/zap2docker-stable zap-baseline.py -t http://example.com -r report.html
+docker run --rm -it anchore/engine:latest report generate -i <docker_image_name>
+docker run --rm -it arachni/arachni --report-save-path=/my/report.afr
+docker run -it openwebscoutools/auditjs-ossindex:latest report -u <url>
+docker run --rm -it danmx/bandit --report=report.html
+docker run -it --rm brakeman/brakeman:latest -o output.html
+docker run --rm -it bundler-audit-docker/bundler-audit bundle-audit check --update --clock;
+docker run --rm -v $PWD:/src pantsell/cargaudit scan --output json > cargo-audit-report.json
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/coreos/clair-scan:latest -r <report> <image>
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/tmp quay.io/clair-container-scan:latest klar <image_name> > report.txt
+docker run -e REPORT_FILE=report.txt quay.io/security-tools/staticcheck:v0 report --json /results.json
+docker run -it ernw/dawnscanner --report <target_url>
+docker run --rm -v $(pwd):/src jeremy/dependency-check:latest -f HTML -o report.html /src
+docker run strcpy/drheader --report <target file or web server address>
+docker run --rm -it dockersamples/dockle:latest
+docker run -it --net host --pid host --cap-add audit_control \ -e DOCKER_CONTENT_TRUST=$DOCKER_CONTENT_TRUST \ -v /var/lib:/var/lib \ -v /var/run/docker.sock:/var/run/docker.sock \ -v /usr/lib/systemd:/usr/lib/systemd \ -v /etc:/etc --label docker_bench_security \ docker/docker-bench-security > report.txt
+docker run --rm detect-secrets/detect-secrets report > secrets_report.yml
+docker run -it --rm docker.io/node:latest eslint ./src --format=json > report.json
+docker run --rm -v $(pwd):/src ggshield:latest /src/report.json
+docker run -v `pwd`/results:/gosec/results securego/gosec -f json -o /gosec/results/gosec.json .
+docker run --rm -it diogomonica/gitleaks -v ./report.json
+docker run --rm -v $(pwd):/app hadolint/hadolint hadolint < /app/report.yml > report.log
+docker run -it --rm horusec/horusec generate report
+docker run --rm huskyci/report-generator
+docker run -v ./:/report ibmappscan/dast -f html -o /report/result.html
+docker run -e XRAY_API_KEY="YOUR_API_KEY" -e XRAY_SCANNER_ID="YOUR_SCANNER_ID" -it jfrog/xray-api-summary-scan:latest report
+docker run -it --rm dockersamples/kicsscanner:2.0 /bin/bash -c “./kicsscanner -r report.json”
+docker run -ti --rm --name=kube-bench-scanner aquasec/kube-bench:latest -f json /tmp/report.json
+docker run --rm devopsplatform/manual-import:0.1 report
+docker run -it opensecurity/mobile-security-framework_mobsf bash -c "python3 ./MSF.py -f $2 -o report-$1.html"
+docker run -ti opensecurity/mobile-security-framework-mobsf /bin/bash -c "/opt/MobSF/python2 ./MobSF.py --scan --file <filename> --report_type JSON > Report.json"
+docker run -it --rm mozilla/observatory scan -t yourdomain.xyz > your_report.txt
+docker run --rm -v "$(pwd):/nessus" tenable/nessus:latest nessus_report --statefile=/tmp/state.txt result.nessus
+docker run --user="" -it tenable/nessus-was -f report.html
+docker run --rm -it snallygaster/nikto -h <target_url> -o report.txt
+docker run --rm -it nmap nmap -oX report.xml mydomain.com
+docker run --rm -v "$PWD":/app nesec/security-analysis:latest scan --reporter report.json --policies ./policies.yaml
+docker run -v $(pwd):/report node:10-alpine npm audit --json > /report/npm_audit.json
+docker run --rm nuclei/nuclei -f list.txt -t templates/ -o report.html
+docker run --rm -it openscap/openscap oscap xccdf eval --profile default --results-arf arf.xml /usr/share/xml/scap/ssg/fedora/ssg-fedora-xccdf.xml
+docker run --rm openvas/openvas csv-generate -f /full_collection_report.xml -o output.csv
+docker run --rm -v $(pwd):/target/ manorrock/ossindex-devaudit scan /target/
+docker run -it --rm mpeace/ort-image:release ort-results generate --confidencelevels most_likely,low
+docker run --rm -it jazzyg/php_security_audit:v2 php audit.php /path/to/project > report.html
+docker run --rm giladno/security-checker security:check
+docker run -v $(pwd):/svn pwnsec/pwn-security-automation-framework -t report
+docker run --rm -it rishikasood/rustyhog -r report.html
+docker run --rm -it <docker-image-name> sarif generate -o report.sarif
+docker run --rm -v `pwd`:/reports scantist/scan generate --format html
+docker run --rm -it scrupulous/scoutsuite scoutsuite report -t aws
+docker run -v $(pwd):/src returntocorp/semgrep-report --format json report /src
+docker run -v `pwd`:/tools/skf-scan/results yoloab/skf-scan generate report
+docker run -it --rm sonatype/report-cli report --help
+docker run --rm mthlewis2/ssllabs-scan --host <target>
+docker run --rm -it ryansch/sslscan sslscan domain.com > report.txt
+docker run --rm -it stefanjudis/sslyze --regular css.com > report.txt
+docker run -v $(pwd):/data nshadov/sslyze --regular --json_out /data/report.json 3_scan
+docker run -t --rm testssl/testssl.sh --htmlfile=report.html scansite.example.com
+docker run --rm sscaiff/terrascan:latest terrascan scan -f <path to terrascript file> -o report.json
+docker run --rm --name TrivyScanner aquasec/trivy:latest --report report.html
+docker run -it --rm trufflehog/trufflehog <params> > report.txt
+docker run --rm trufflehog3 --generate-report
+docker run --rm liamg/tfsec --generate-report > tfsec-report.txt
+docker run -t --rm wapiti/scan report scan_result.xml > result.html
+docker run -v `pwd`:/wpscan/report --rm wpscanteam/wpscan --url <website URL> --format html --file /wpscan/report/wpscan_report.html
+docker run --rm -it wfuzz/wfuzz:latest -o json --import report.json
+docker run -it whispers:0.1 --notewith 0-100 --report <report_name>
+docker run -p 8080:8080 owasp/zap2docker-stable zap-baseline.py -t http://example.com -r report.html
