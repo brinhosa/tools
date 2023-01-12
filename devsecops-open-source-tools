@@ -368,3 +368,5 @@ docker run --rm -u root -v $(PWD):/src whispers:latest -d "https://example.com" 
 docker run --rm -u root -v $(PWD):/src xanitizer/xanitizer-ubuntu scan --url <input> --report /src/filename
 docker run --rm -u root -v $(PWD):/src yarnaudit scan --url <input> && docker exec yarnaudit report -f /src/report.json
 docker run --rm -u root -v $(PWD):/src zaproxy zap-api-scan.py -t <url or domain or subdomain or directory of the source-code> -f html -r /src/filename
+
+Example command: while read line; do ./gpt3.sh one-line bash to execute docker command for the tool "$line" executing the scan and generating a report, using -u root and -v CIFRAOPWD:/src to save the report and using the /src/filename in the docker place to save the report, receiving the input a url or domain or subdomain or directory of the source-code according to the tool, using docker image name from docker hub | tee -a devsecopscommands4.txt; done < devsecopstools.txt
