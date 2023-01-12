@@ -370,3 +370,46 @@ docker run --rm -u root -v $(PWD):/src yarnaudit scan --url <input> && docker ex
 docker run --rm -u root -v $(PWD):/src zaproxy zap-api-scan.py -t <url or domain or subdomain or directory of the source-code> -f html -r /src/filename
 
 Example command: while read line; do ./gpt3.sh one-line bash to execute docker command for the tool "$line" executing the scan and generating a report, using -u root and -v CIFRAOPWD:/src to save the report and using the /src/filename in the docker place to save the report, receiving the input a url or domain or subdomain or directory of the source-code according to the tool, using docker image name from docker hub | tee -a devsecopscommands4.txt; done < devsecopstools.txt
+
+Other tools and commands:
+docker run -u root -v $(PWD):/src -it <docker-image-name> burpsuite --scan <url or domain or subdomain or directory> --report /src/filename.xml
+docker run -v $(PWD):/src -u root owasp/zap2docker-stable zap-baseline.py -t <inputurl> -g genhtml,/src/filename.html
+docker run -u root -v $(PWD):/src dockerhub/nessus scan -u <url/domain/subdomain/directory> -o /src/filename.nessus
+docker run -u root -v $(PWD):/src nmap -oA /src/filename <URL/Domain/Subdomain/Directory>
+docker run -v $(PWD):/src sqlmap -u <url/domain/subdomain/directory> --batch --save --output /src/filename
+docker run -u root -v $(PWD):/src metasploit msfcli auxiliary/scanner/http/dir_webdav_vuln_scanner RHOSTS=$1 E 2> /src/filename;
+docker run --rm -u root -v $(PWD):/src wireshark <url>|<domain>|<subdomain><directory> -o /src/filename
+docker run --user root -v $(PWD):/src -e SRC_URL=your_url_or_domain aircrack-ng aircrack-ng /src/filename.txt
+docker run -u root -v $(PWD):/src <image_name> transform url/domain/subdomain/directory -t /src/filename.report
+docker run -u root -v $(PWD):/src {image_name} john -w=/src/filename <input_source>
+docker run --rm -v $(PWD):/src nikto -u root -output /src/filename.html <url/domain/subdomain/directory>
+docker run --rm -u root -v $(PWD):/src sqlninja sqlninja -t <url or domain or subdomain or directory of source-code> -o /src/filename
+docker run --rm -v $(PWD):/src -u root docker.io/w3af:latest w3af_console -s /src/filename --plugins "crawl, audit, bruteforce" --target http://example.com
+docker run -v $(PWD):/src:rw -u root dirbuster /DirBuster-1.0-RC1/dirbuster.sh -u <Target_URL> -o /src/filename.txt
+docker run -v $(PWD):/src -u root theHarvester -d <url_or_domain_or_subdomain> -l 200 -b all > /src/filename.txt
+docker run -u root -v$(PWD):/src openvas bash -c "openvas-start; openvas-scan <url/domain/subdomain/directory>; openvas-report <filename> --format=xml"
+docker run -it --rm -u root -v $(PWD):/src beego scan $1 -o /src/filename
+docker run -u root -v $(PWD):/src -it fiddler fiddlerscan -u <url_or_domain_or_subdomain_or_directory> --output /src/filename
+docker run wfuzz:latest -o /src/filename.txt -u root -v $(PWD):/src "url or domain or subdomain or directory"
+docker run -v $(PWD):/src sqlmap/sqlmap -u root --batch --output-dir=/src/filename --web-url=$urlor domainorsubdomainordirectory
+docker run --rm -v $(pwd)/$(PWD):/src index.docker.io/stefanaparaschini/recon-ng -u root 'url or domain or subdomain or directory of the source-code' > /src/filename.txt
+docker run -u root -v $(PWD):/src myshodan <url/domain/subdomain/directory> -o /src/filename.txt
+docker run --user root -v $(PWD):/src:rw whois <url/domain/subdomain/directory> > /src/filename
+docker run --name=cifraodorking -u root -v $(PWD):/src docker.io/googledorkscanener:latest <url/domain/subdomain/directory> /src/filename
+docker run -v $(PWD):/src owasp/xenotix Xenotix-Automated-Scanner -u root -i [url|domain|subdomain|directory] --report /src/filename
+docker run -u root -v $(PWD):/src xsshunter/xsshunter scan --url url-or-domain-or-subdomain-or-directory --output /src/filename
+docker run -v $(PWD):/src sqlmapproject/sqlmap -u "root" --tamper="<SCAN_NAME>.py" <INPUT_URL> --batch --blowfish-detect --output=/src/<FILENAME>
+docker run --name sqlivulscan -u root -v $(PWD):/src sqlivulscan https://www.example.com/src/filename
+docker run -u root -v $(PWD):/src -it dalfox/dalfox --scope example.com --report-filename /src/report.md report
+docker run -u root -v $(PWD):/src xsstrike /src/filename -u URL/DOMAIN/SUBDOMAIN/DIRECTORY --report=/src/filename.json
+docker run -u root -v $(PWD):/src msooss/sqlninja --scandomain [url or domain or subdomain or directory] --out-file /src/filename
+docker run --rm -v $(PWD):/src wpscanteam/wpscan -u root --url <input url or domain or subdomain or directory of the source-code> --report /src/filename.html
+docker run -u root -v $(PWD):/src joomscan -u http/domain/subdomain/directory --report /src/filename.html
+docker run -u root -v $(PWD):/src golismero/golismero scan http://www.example.com -o /src/filename.csv
+docker run -u root -v CIFRAOOPWD:/src fuzzapi /src/filename <URL or domain or subdomain or directory>
+docker run -v $(PWD):/src --rm postman scan -u root -i $1 /src/filename
+docker run --user root -v $(PWD):/src netskope/soapui-cli -u "url-or-domain-or-subdomain-or-directory" /src/filename report
+docker run -v $(PWD):/src --name filename curl:latest scan <url/domain/subdomain/directory> -u root > /src/filename
+docker run -u root -v $(PWD):/src rest-assured scan <url/domain/subdomain/directory> --report /src/filename
+docker run -u root -v $(PWD):/src insomnia scan --url <input> --report-file /src/<filename>.json
+docker run -u root -v $(PWD):/src  spiderfoot spiderfoot.py --scan your_url_domainsubdirectoryname --report csv,json,html --outputfile /src/filename
