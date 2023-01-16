@@ -1,0 +1,130 @@
+Here are some example commands for executing the Top 15 Vulnerability Scanners you've listed:
+
+nuclei:
+ 
+go get -u -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei
+nuclei -list-templates
+nuclei -h
+Sniper:
+ 
+git clone https://github.com/1N3/Sniper.git
+cd Sniper
+python sniper
+Metasploit Framework:
+ 
+git clone https://github.com/rapid7/metasploit-framework.git
+cd metasploit-framework
+bundle install
+./msfconsole
+Nikto:
+ 
+git clone https://github.com/sullo/nikto.git
+cd nikto
+perl nikto.pl -h target_host
+Arachni:
+ 
+git clone https://github.com/Arachni/arachni.git
+cd arachni
+bundle install
+arachni --help
+Jaeles:
+ 
+go get -u -v github.com/jaeles-project/jaeles
+jaeles -h
+Retire.js:
+ 
+npm install -g retire
+retire --help
+Osmedeus:
+ 
+git clone https://github.com/j3ssie/Osmedeus.git
+cd Osmedeus
+./install.sh
+python osmedeus.py --help
+Getsploit:
+ 
+go get -u -v github.com/1N3/getsploit
+getsploit -h
+Flan:
+ 
+git clone https://github.com/cloudflare/flan.git
+cd flan
+python setup.py install
+flan -h
+Findsploit:
+ 
+git clone https://github.com/1N3/Findsploit.git
+cd Findsploit
+python findsploit.py -h
+BlackWidow:
+ 
+git clone https://github.com/1N3/BlackWidow.git
+cd BlackWidow
+python blackwidow -h
+backslash-powered-scanner:
+ 
+git clone https://github.com/m4ll0k/backslash-powered-scanner.git
+cd backslash-powered-scanner
+python backslash-powered-scanner.py -h
+Eagle:
+ 
+git clone https://github.com/c0r3dump3d/Eagle.git
+cd Eagle
+python eagle.py -h
+cariddi:
+ 
+git clone https://github.com/projectdiscovery/cariddi.git
+cd cariddi
+go build
+cariddi -h
+Please note that these commands are just examples and may vary depending on your system setup and configuration. Also, some of the tools listed here may require additional dependencies or configurations in order to run.
+
+
+
+Here are some example commands for executing the Top 15 Vulnerability Scanners you've listed using Docker and saving the reports in the $(PWD)/src directory:
+
+nuclei:
+ 
+docker run -v $(PWD)/src:/src projectdiscovery/nuclei -t /src/nuclei-templates.yaml -targets /src/targets.txt -o /src/nuclei-report.txt
+Sniper:
+ 
+docker run -v $(PWD)/src:/src 1n3/sniper -u http://target -r /src/sniper-report.txt
+Metasploit Framework:
+ 
+docker run -v $(PWD)/src:/src -it metasploitframework/metasploit-framework msfconsole
+Nikto:
+ 
+docker run -v $(PWD)/src:/src sullo/nikto -h http://target -o /src/nikto-report.txt
+Arachni:
+ 
+docker run -v $(PWD)/src:/src arachni/arachni -u http://target --report-save-path=/src/arachni-report.afr
+Jaeles:
+ 
+docker run -v $(PWD)/src:/src jaeles/jaeles -s /src/jaeles-signatures.yaml -u http://target -o /src/jaeles-report.json
+Retire.js:
+ 
+docker run -v $(PWD)/src:/src retirejs retire --outputformat json --outputpath /src/retire-report.json http://target
+Osmedeus:
+ 
+docker run -v $(PWD)/src:/src -it j3ssie/osmedeus python osmedeus.py -t http://target -o /src/osmedeus-report.json
+Getsploit:
+ 
+docker run -v $(PWD)/src:/src 1n3/getsploit -e /src/getsploit-exploits -r /src/getsploit-report.txt
+Flan:
+ 
+docker run -v $(PWD)/src:/src cloudflare/flan http://target -o /src/flan-report.json
+Findsploit:
+ 
+docker run -v $(PWD)/src:/src 1n3/findsploit -e windows -r /src/findsploit-report.txt
+BlackWidow:
+ 
+docker run -v $(PWD)/src:/src 1n3/blackwidow http://target -o /src/blackwidow-report.json
+
+13. backslash-powered-scanner:
+docker run -v $(PWD)/src:/src m4ll0k/backslash-powered-scanner http://target -o /src/backslash-powered-scanner-report.txt
+
+14. Eagle:
+docker run -v $(PWD)/src:/src c0r3dump3d/eagle http://target -o /src/eagle-report.txt
+
+15. cariddi:
+docker run -v $(PWD)/src:/src projectdiscovery/cariddi -targets /src/targets.txt -o /src/cariddi-report.txt
