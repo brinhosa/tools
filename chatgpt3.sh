@@ -13,7 +13,7 @@ PROMPT="$@"
 echo $PROMPT
 
 # Set the number of tokens to generate
-TOKEN_COUNT=2000
+TOKEN_COUNT=3000
 
 # Set the temperature
 TEMPERATURE=1
