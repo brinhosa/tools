@@ -1,0 +1,137 @@
+Based on current usage statistics, the most popular CI/CD tools, ordered by number of users are:
+
+GitHub Actions
+GitLab CI/CD
+Jenkins
+Travis CI
+Azure DevOps
+CircleCI
+AWS CodePipeline
+Bitbucket Pipelines
+TeamCity
+Google Cloud Build
+Heroku
+CodeShip
+Solano Labs.
+It's worth noting that usage statistics can vary depending on the source and the specific industry or market segment being analyzed.
+ 
+There is no one-size-fits-all answer to which CI/CD tool is best for including security, as the needs and preferences of different organizations and projects can vary significantly. However, some popular tools that are known for their strong security features include:
+
+GitLab CI/CD: GitLab has built-in security features such as automatic dependency scanning, dynamic application security testing, and container scanning. It also provides detailed security reports and can integrate with other security tools.
+Azure DevOps: Azure DevOps provides built-in security features such as vulnerability management, threat protection, and security assessments. It also allows for integration with third-party security tools.
+AWS CodePipeline: AWS CodePipeline allows for integration with security tools such as AWS Security Hub and Amazon Inspector for automated security testing.
+Jenkins: Jenkins has a wide range of security-related plugins available, such as the Jenkins Security Advisory plugin, which provides information about known vulnerabilities in Jenkins and its plugins.
+Travis CI: Travis CI also has security features such as automatic dependency scanning and integrated security testing.
+Ultimately, the best CI/CD tool for including security will depend on the specific needs and requirements of your organization and project. It's recommended to evaluate different tools and their capabilities to make an informed decision.
+ 
+OWASP DefectDojo is an open-source vulnerability management tool that can be integrated with various CI/CD tools to automate security testing and reporting. Here is an overview of how to integrate DefectDojo with a few popular CI/CD tools:
+
+Jenkins: You can use the DefectDojo Jenkins plugin to automate the import of scan results and the creation of new vulnerabilities in DefectDojo. The plugin can be configured to import scan results from various security scanners such as Nessus, OpenVAS, and ZAP.
+GitLab CI/CD: You can use the GitLab CI/CD pipeline to run security scanners such as OWASP ZAP and Nessus, and then use the DefectDojo API to import the scan results into DefectDojo.
+Azure DevOps: You can use the Azure DevOps pipeline to run security scanners such as OWASP ZAP and Nessus, and then use the DefectDojo API to import the scan results into DefectDojo.
+Travis CI: You can use the Travis CI pipeline to run security scanners such as OWASP ZAP and Nessus, and then use the DefectDojo API to import the scan results into DefectDojo.
+Keep in mind that, before start the integration, you will need to have DefectDojo installed and configured. Also, you can use the DefectDojo API documentation as a guide to automate the process.
+ 
+#!/bin/bash
+ 
+# Set AWS access and secret keys as environment variables
+export AWS_ACCESS_KEY_ID=your_access_key
+export AWS_SECRET_ACCESS_KEY=your_secret_key
+ 
+# Pull the CloudSploit image from Docker Hub
+docker pull cloudsploit/scanner
+ 
+# Run the CloudSploit scan and save the output to a file
+docker run --rm cloudsploit/scanner > cloudsploit_report.txt
+ 
+# Pull the Prowler image from Docker Hub
+docker pull adambaumeister/prowler
+ 
+# Run the Prowler scan and save the output to a file
+docker run --rm adambaumeister/prowler -M > prowler_report.txt
+ 
+# Pull the Cloudsplaining image from Docker Hub
+docker pull cloudsplaining/cloudsplaining
+ 
+# Run the Cloudsplaining scan and save the output to a file
+docker run --rm cloudsplaining/cloudsplaining scan --output-format json --output-file cloudsplaining_report.json
+ 
+# Pull the ScoutSuite image from Docker Hub
+docker pull nccgroup/scoutsuite
+ 
+# Run the ScoutSuite scan and save the output to a file
+docker run --rm -v $(pwd):/data nccgroup/scoutsuite -r scoutsuite_report.html
+ 
+#!/bin/bash
+ 
+# Pull the Nmap image from Docker Hub
+docker pull grawity/nmap
+ 
+# Run Nmap with vuln scripts and save the output to a file
+docker run --rm grawity/nmap -sV --script vuln -oX nmap_vuln_report.xml <target_host>
+ 
+# Pull the Nuclei image from Docker Hub
+docker pull projectdiscovery/nuclei
+ 
+# Run Nuclei and save the output to a file
+docker run --rm -v $(pwd):/nuclei-output projectdiscovery/nuclei -t <target_host> -o nuclei_report.txt
+ 
+# Pull the Jaeles image from Docker Hub
+docker pull jaelesproject/jaeles
+ 
+# Run Jaeles and save the output to a file
+docker run --rm -v $(pwd):/app/output jaelesproject/jaeles scan -u <target_host> -o jaeles_report.json
+ 
+# Pull the Nikto image from Docker Hub
+docker pull sdispater/nikto
+ 
+# Run Nikto and save the output to a file
+docker run --rm -v $(pwd):/tmp sdispater/nikto -host <target_host> -output nikto_report.txt
+ 
+# Pull the Tsunami image from Docker Hub
+docker pull projectdiscovery/tsunami
+ 
+# Run Tsunami and save the output to a file
+docker run --rm -v $(pwd):/tsunami/output projectdiscovery/tsunami -t <target_host> -o tsunami_report.txt
+ 
+docker search nmap | awk 'NR==2{print $1}' | xargs -I {} docker pull {}
+docker search nuclei | awk 'NR==2{print $1}' | xargs -I {} docker run -it –name “{}” {}
+ 
+docker run --user $(id -u) --rm -v $(pwd):/dastardly -e \ DASTARDLY_TARGET_URL=https://ginandjuice.shop -e \ DASTARDLY_OUTPUT_FILE=/dastardly/dastardly-report.xml \ public.ecr.aws/portswigger/dastardly:latest
+ 
+https://blog.it-securityguard.com/pbbt.pdf
+ 
+ 
+from flask import Flask, request, jsonify
+from sh import semgrep
+import zipfile
+ 
+app = Flask(__name__)
+ 
+@app.route('/run_semgrep', methods=['POST'])
+def run_semgrep():
+    if 'files' not in request.files:
+        return jsonify({'error': 'No files provided'}), 400
+    files = request.files.getlist('files')
+    if not files:
+        return jsonify({'error': 'No files selected'}), 400
+    results = []
+    for file in files:
+        if file.filename.endswith('.zip'):
+            file.save(file.filename)
+            with zipfile.ZipFile(file.filename, 'r') as zip_ref:
+                zip_ref.extractall()
+            result = semgrep("--config", "python", "--json", ".")
+            results.append(result)
+        elif file.filename.endswith('.py'):
+            file.save(file.filename)
+            result = semgrep("--config", "python", "--json", file.filename)
+            results.append(result)
+        else:
+            return jsonify({'error': 'Invalid file type'}), 400
+    return jsonify(results)
+ 
+if __name__ == '__main__':
+    app.run(debug=True)
+ 
+ 
