@@ -1,0 +1,106 @@
+Great security feedback loops you can create w/ @github actions (screenshots below)
+1. commit to "feature" branch runs @semgrep SAST
+2. commit/merge to main branch runs SAST and gen SBOM w/ @CycloneDX_Spec, pushes to @DependencyTrack
+3. Run everything on tag push (pre-deploy)
+
+name: Semgrep on Feature Branch Workflow
+
+on:
+  push:
+    branches:
+      - 'feature-*'
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Semgrep
+        uses: returntocorp/semgrep-action@v1
+      - name: Run Semgrep
+        run: semgrep --config my-rule-set.yaml --no-autoload --no-config-update
+      - name: Check Semgrep Results
+        run: |
+          if [ -n "$(semgrep --config my-rule-set.yaml --no-autoload --no-config-update --quiet.)" ]; then
+            echo 'Semgrep found issues'
+            exit 1
+          else
+            echo 'Semgrep found no issues'
+          fi
+          
+name: Semgrep and CycloneDX Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  semgrep-cyclonedx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Semgrep
+        uses: returntocorp/semgrep-action@v1
+      - name: Run Semgrep
+        run: semgrep --config my-rule-set.yaml --no-autoload
+      - name: Generate CycloneDX SBOM
+        run: cyclonedx-bom --format JSON --output bom.json
+      - name: Publish SBOM to Dependency Track
+        uses: owasp/dependency-track-github-action@2.0.0
+        with:
+          server-url: https://dependency-track.example.com
+          apt-key: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}
+          bom-path: bom.json
+          
+          
+name: Semgrep and SBOM on Production Tag
+
+on:
+  push:
+    tags:
+      - '*-prod'
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Semgrep
+        uses: returntocorp/semgrep-action@v1
+      - name: Run Semgrep
+        run: semgrep --config my-rule-set.yaml --no-autoload --no-config-update
+      - name: Check Semgrep Results
+        run: |
+          if [ -n "$(semgrep --config my-rule-set.yaml --no-autoload --no-config-update --quiet.)" ]; then
+            echo 'Semgrep found issues'
+            exit 1
+          else
+            echo 'Semgrep found no issues'
+          fi
+  sbom:
+    needs: semgrep
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Generate SBOM
+        uses: CycloneDX/cyclonedx-python-action@v2
+        with:
+          output: sbom.xml
+          exclude-dev: true
+          schema-version: 1.3
+      - name: Push SBOM to Dependency Track
+        uses: dependency-track/dependency-track-upload-action@v2
+        with:
+          baseurl: https://dependencytrack.example.com/
+          aptKey: ${{ secrets.DT_API_KEY }}
+          bom: sbom.xml
+          project: My Project
+          version: ${{ github.ref }}
